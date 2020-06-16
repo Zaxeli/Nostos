@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+<!-- Page title -->
+{% block title %}{% endblock %}
+
+{% block main %}
+    
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <style>
+        body{
+            background-color: #c3c3c5;
+            background-size: contain;            
+        }
+        table{
+            font-family: "Times New Roman";
+        }
+    </style>
+    <table class="table-main my-3">
+        <td class="td-sub"></td>
+        <td class="td-main text-center">
+            <h4>
+                <!-- Heading in the page -->
+                {% block heading %}{% endblock %}
+            </h4>
+            <hr class="h-divider">
+            <div id="text">
+                <!-- Text block/wall for page -->
+                {% block text %}{% endblock %}
+            </div>
+
+        </td>
+        <td class="td-sub">
+            <div class="td-subdiv sticky-top text-center rounded">
+                <h5>
+                    Explore
+                </h5>
+                <hr class="h-divider">
+                <div id="text">
+                    <!-- Text block/wall for page -->
+                    {% block links %}{% endblock %}
+                </div>
+            </div>
+            
+        </td>
+    </table>
+    
+{% endblock %}

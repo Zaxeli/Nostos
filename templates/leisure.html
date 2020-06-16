@@ -1,0 +1,37 @@
+{% extends "room.html" %}
+{% set active_page = "leisure" %}
+
+{% block title %}
+    Erreiha 
+{% endblock %}
+
+{% block heading %}
+    Nostos Erreiha &mdash; Leisure
+{% endblock %}
+
+
+{% block text %}
+    
+    <p>
+        Nostos Erreiha is a place where you can manage your leisurely enojyments such as games which you wish to play, movies which you wish to watch and also books you wish to read. 
+    </p>
+
+    <p>
+        Here, you can find the Play and Watch rooms, and also direct yourself to the Library for leisurely reading. You may manage your lists of games and movies using them; adding items, removing them and also marking items as 'Done'. You can also add any details or references (in the form of links) for each of your items.
+    </p>
+
+    <p>
+        The "Explore" tab to the right can lead you to these rooms.
+    </p>
+
+{% endblock %}
+
+{% block links %}
+    <a href="/library" class="btn btn-secondary btn-block" role="button">Library</a>
+    <br>
+    <a href="/play" class="btn btn-secondary btn-block" role="button">Play</a>
+    <br>
+    <a href="/watch" class="btn btn-secondary btn-block" role="button">Watch</a>
+{% endblock %}
+
+

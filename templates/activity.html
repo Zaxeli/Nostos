@@ -1,0 +1,248 @@
+{% extends "layout.html" %}
+
+
+<!-- Page title -->
+{% block title %}{% endblock %}
+
+{% block main %}
+    <style>
+        body{
+            background-color: #c3c3c5;
+            background-size: contain;            
+        }
+        table{
+            font-family: "Times New Roman";
+        }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+            
+        });
+
+        function modal_error(msg){
+            $("#msg_modal_label").html("Error!")
+            $("#msg_modal_body").html(msg)
+
+            mdl = $("#msg_modal")
+            mdl.modal("show")
+        }
+
+        function done(btn){
+
+            // TODO: AJAX for UPDATE 'done' 
+            //alert($(btn).attr("data-record-id"))
+
+            data={
+                item_id: $(btn).attr("data-record-id"),
+                done: 0
+            };
+
+            if($(btn).attr("class").includes("btn-success")){
+                
+                data.done = 0;
+
+                $.post(window.location.href+"_done", data, function(res){
+
+                    // Updated to 'Not done' so switch button style to Outline if successful
+                    if(res=="1"){
+                        $(btn).removeClass("btn-success").addClass("btn-outline-success");
+                        alert("Success: updated to \"Done\" \n "+res);
+                    }
+                    else{
+                        // Error if unsuccessful
+                        modal_error("Could not update!")
+                    }
+                });
+            }
+            else{
+                
+                data.done = 1
+
+                $.post(window.location.href+"_done", data, function(res){
+                    // Updated to 'Done' so switch button style to Fill if successful
+                    if(res=="1"){
+                        $(btn).removeClass("btn-outline-success").addClass("btn-success");
+                        //alert("Success: updated to \"Not Done\" \n "+res);
+                    }
+                    else{
+                        // Error if unsuccessful
+                        modal_error("Could not update!")
+                    }
+                        
+                });
+            }            
+        }
+    
+        function del(btn){
+
+            data = {
+                item_id :  $(btn).attr("data-record-id")
+            }
+
+            $.post(window.location.href+"_del",data, function(res){
+                alert(res);
+                if(res=="1"){
+                    // Successfuly deleted
+
+                    $(btn).closest("tr").remove();
+                }
+                else{
+                    // Unsuccessful deletion
+
+                    modal_error("Deletion unsuccessful!")
+                }
+            });
+        }
+    </script>
+    
+    <table class="table-main my-3">
+        <td class="td-sub-activity"></td>
+        <td class="td-main text-center">
+            <div>
+                <h4 id="oo" class="text-center">
+                    <!-- Heading in the page -->
+                    {% block heading %}Nostos Actium &mdash; Activity{% endblock %}
+                </h4>
+                <hr class="h-divider">
+                <div id="text" class="activity-description">
+                    <!-- Text block/wall for page -->
+                    {% block text %}
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt lobortis nibh ac sagittis. Integer tincidunt, libero et euismod faucibus, neque orci consequat augue, ut tempus lorem eros quis lorem. Proin vel molestie leo, eu hendrerit nulla. Quisque fermentum egestas lacinia. Vivamus fringilla orci sed lorem convallis varius. Duis at lacus quis tellus sodales fermentum tempor at erat. Donec porttitor orci sed nisl viverra, tempus facilisis nibh imperdiet. Nullam lacinia ante vitae risus egestas venenatis. Nam sodales nisl bibendum libero interdum, eu tempus lorem accumsan. Ut molestie, magna ut auctor interdum, tellus libero luctus sem, nec consectetur dolor erat in felis. Nam tristique auctor lorem eu fringilla.
+                    {% endblock %}
+                </div>
+                <hr class="h-divider">
+
+                <div id="content">
+                    <table class="table table-dark table-hover">
+                        <tr>
+                            <th>
+                            </th>
+                            <th class="col-1 text-left">
+                                Task
+                            </th>
+                            <th>
+                                Done
+                            </th>
+                            <th>
+                                Delete
+                            </th>
+                        </tr>
+                        
+                        {% for item in data %}
+                        <tr>
+                            <td>
+                            </td>
+                            <td class="text-left">
+                                <a class="a-mute" data-toggle="collapse" href="#item{{loop.index}}" role="button" aria-expanded="false">
+                                    <div>                            
+                                        <span class="chevron fa fa-chevron-right" style="color: inherit;"></span>        
+                                        <span class="chevron fa fa-chevron-down" style="color: inherit;"></span>
+                                        <b>
+                                            {{item[2]}}
+                                        </b>
+                                        <div class="collapse" id="item{{loop.index}}">
+                                            <div class="card-dark">
+                                                <b>Links:</b>
+                                                <br>  
+                                                <a href="{{item[4]}}">{{item[4]}}</a>
+                                                <hr class="h-divider">
+                                                <b>Description:</b>
+                                                <br>
+                                                {{item[3]}}
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </a>
+                            </td>
+                            <td>
+                                {% if item[5] == 0 %}
+                                    <button data-record-id="{{item[0]}}" type="button" class="btn btn-outline-success" onclick="done(this)">Done</button>
+                                {% else %}
+                                    <button data-record-id="{{item[0]}}" type="button" class="btn btn-success" onclick="done(this)">Done</button>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button type="button" data-record-id="{{item[0]}}" class="btn btn-danger" onclick="del(this)">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                    
+                </div>
+            </div>
+        </td>
+        <td class="td-sub-activity">
+            <!-- Add new item -->
+            <div class="td-subdiv sticky-top text-center rounded">
+                <h6>
+                    Add new activity
+                </h6>
+                <hr class="h-divider">
+                <div id="text">
+                    <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#add-modal">
+                        ADD
+                    </button>                      
+                </div>
+            </div>
+        </td>
+    </table>
+
+
+    <!-- Modal for Adding new item -->
+    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="add-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <form class="w-100 center-div" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="add-modal-label">
+                            Add new item
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    
+                        <div class="form-group">
+                            <input name="name" class="form-control" placeholder="Name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" class="form-control" rows="5" placeholder="Description" type="text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input name="references" class="form-control" placeholder="Reference (link)" type="text">
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Error message modal-->
+    <div class="modal fade" id="msg_modal" tabindex="-1" role="dialog" aria-labelledby="error_modal_label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="msg_modal_label">Label</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="msg_modal_body" class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+{% endblock %}

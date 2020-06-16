@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Estus nostos
+{% endblock %}
+
+{% block main %}
+    
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <style>
+        body{
+            background-image: none;
+        }
+    </style>
+    <table class="table-main my-3">
+        <td></td>
+        <td class="td-main text-center container">
+            <div class="row d-flex w-100 ">
+                <div class="col-8" style="padding-right:20px; border-right: 1px solid #ccc;">
+                    <h5>Cozy up in your home</h5>
+                    <hr class="h-divider">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mauris erat, porta ac volutpat quis, scelerisque eu dolor. Vestibulum nec ipsum sed leo accumsan condimentum eu id nisi. Pellentesque accumsan dapibus neque. Cras aliquet malesuada elementum. Fusce varius ultrices sagittis. Etiam commodo enim nec sapien aliquet, a gravida massa congue. Praesent fringilla libero eget libero feugiat sollicitudin.
+                </div>
+                <div class="col">
+                    <form class="center_div " id="register" action="/register" method="post">
+                        <div class="form-group">
+                            <input id="username" autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+                        </div>
+                        <div class="form-group">
+                            <input id="password" class="form-control" name="password" placeholder="Password" type="password">
+                        </div>
+                        <div class="form-group">
+                            <input id="re-password" class="form-control" name="re-password" placeholder="Retype Password" type="password">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </form>
+                </div>
+                
+            </div>
+            
+
+        </td>
+        <td></td>
+    </table>
+
+    {% if success or error %}
+    <!-- Modal -->
+    <style>
+        .success{
+            background-color: rgba(65, 110, 59, 0.9);
+            color: #e2f6ff;
+        }
+    </style>
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalodalCenterTitle" aria-hidden="true">
+        
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        
+        {% if success %}
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">
+                Congratuations!
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body text-center">
+                Welcome,  
+                <br>
+                <img src="/static/keys.jpg" style="text-align: center;">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" onclick="location.href='/login'">Go to Login</button>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">
+                Error!
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        {% endif %}
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            $("#modal").modal("show");
+        };
+    </script>
+    {% endif %}
+    
+{% endblock %}

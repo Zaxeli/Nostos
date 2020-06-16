@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Estus nostos
+{% endblock %}
+
+{% block main %}
+    
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <style>
+        body{
+            background-image: none;
+        }
+    </style>
+    <table class="table-main my-3">
+        <td></td>
+        <td class="td-main text-center">
+            <form class="w-25 center-div " id="login" action="/login" method="post">
+                <div class="form-group">
+                    <input id="username" autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+                </div>
+                <div class="form-group">
+                    <input id="password" class="form-control" name="password" placeholder="Password" type="password">
+                </div>
+                <button class="btn btn-primary" type="submit">Log In</button>
+            </form>
+
+        </td>
+        <td></td>
+    </table>
+
+    {% if error %}
+    <!-- Modal -->
+    <style>
+        .success{
+            background-color: rgba(65, 110, 59, 0.9);
+            color: #e2f6ff;
+        }
+    </style>
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalodalCenterTitle" aria-hidden="true">
+        
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">
+                Error!
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                {{error}}
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            $("#modal").modal("show");
+        };
+    </script>
+    {% endif %}
+    
+{% endblock %}

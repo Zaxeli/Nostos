@@ -1,0 +1,34 @@
+{% extends "room.html" %}
+{% set active_page = "study" %}
+
+{% block title %}
+    Erudire 
+{% endblock %}
+
+{% block heading %}
+    Nostos Erudire &mdash; Study
+{% endblock %}
+
+{% block text %}
+
+    <p>
+        Nostos Erudire &mdash; your study &mdash; is a place to allow you to manage your eruditely matters such as the books which you wish to read, and the tasks which you must perform.
+    </p>
+
+    <p>
+        Here, you can find the Tasks and Library rooms. You may manage your lists of tasks and books-to-read using them; adding items, removing them and also marking items as 'Done'. You can also add any details or references (in the form of links) for each of your items.
+    </p>
+
+    <p>
+        The "Explore" tab to the right can lead you to these rooms.
+    </p>
+
+
+{% endblock %}
+
+{% block links %}
+    <a href="/library" class="btn btn-secondary btn-block" role="button">Library</a>
+    <br>
+    <a href="/tasks" class="btn btn-secondary btn-block" role="button">Tasks</a>
+{% endblock %}
+

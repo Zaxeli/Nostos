@@ -1,0 +1,50 @@
+{% extends "room.html" %}
+{% set active_page = "fireplace" %}
+
+{% block title %}
+    Estrea
+{% endblock %}
+
+{% block heading %}
+    Nostos Estrea &mdash; Fireplace
+{% endblock %}
+
+{% block text %}
+
+    <p>
+        Welcome,
+        <br>
+        Nostos is a place where you can easily manage your various lists that you might have such as a list of tasks, book to read, games to play and movies to watch. 
+    </p>
+    <p>
+        This room is your fireplace.
+    </p>
+    <p>
+        There are two categories in which these lists have been divided: work-related &ndash; "Study", and leisure-related &ndash; "Leisure". There are further categories to explore in the Study and Leisure sections, referred to as "rooms". The rooms of Tasks, Library, Play and Watch are distributed among the two main sections.
+    </p>
+    <hr class="h-divider">
+    <div class="card-dark border rounded" style="border-color: rgb(110, 110, 110);">
+        <div class="text-left " style="display: inline-block;">
+            <ul>
+                <li><a class="a-mute" href="/study">Study</a></li>
+                <ul>
+                    <li><a class="a-mute" href="/tasks">Tasks</a></li>
+                    <li><a class="a-mute" href="/library">Library</a></li>
+                </ul>
+                <li><a class="a-mute" href="/leisure">Leisure</a></li>
+                <ul>
+                    <li><a class="a-mute" href="/play">Play</a></li>
+                    <li><a class="a-mute" href="/watch">Watch</a></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <hr class="h-divider">
+
+{% endblock %}
+
+{% block links %}
+    <a href="/study" class="btn btn-secondary btn-block" role="button">Study</a>
+    <br>
+    <a href="/leisure" class="btn btn-secondary btn-block" role="button">Leisure</a>
+{% endblock %}
