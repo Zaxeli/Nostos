@@ -107,7 +107,6 @@ def fireplace():
 def study():
     """Study:  Page for work related things"""
 
-    # TODO
     return render_template("study.html")
 
 
@@ -268,7 +267,6 @@ def library_del():
 def leisure():
     """Leisure: Page for leisurely activities"""
 
-    # TODO
     return render_template("leisure.html")
 
 @app.route("/play", methods=["POST", "GET"])

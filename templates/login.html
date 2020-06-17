@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Estus nostos
+    Login
 {% endblock %}
 
 {% block main %}
@@ -14,18 +14,35 @@
     </style>
     <table class="table-main my-3">
         <td></td>
-        <td class="td-main text-center">
-            <form class="w-25 center-div " id="login" action="/login" method="post">
-                <div class="form-group">
-                    <input id="username" autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        <td class="td-main text-center container">
+            <div class="row d-flex w-100">
+                <div class="col-8" style="padding-right:20px; border-right: 1px solid #ccc;">
+                    <h5>Welcome to Nostos</h5>
+                    <hr class="h-divider">
+                    <p>
+                        Hello, Nostos is a place where you can easily manage your various interests and hobbies. This web application provides you with different lists for things like reading, playing games, watching movies and even your tasks, all provided in a single convenient place without the hassle of maintaining each of these lists separately.
+                    </p>
+                    <p>
+                        You might have even run into situations where you would have had to maintain even a single list in multiple places because of different platforms such as for games or movies. With Nostos you can maintain all of them in a single place.
+                    </p>
+                    <p>
+                        Please login or register to gain access to Nostos. 
+                    </p>
                 </div>
-                <div class="form-group">
-                    <input id="password" class="form-control" name="password" placeholder="Password" type="password">
+                <div class="col">
+                    <form class="center_div " id="register" action="/login" method="post">
+                        <div class="form-group">
+                            <input id="username" autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+                        </div>
+                        <div class="form-group">
+                            <input id="password" class="form-control" name="password" placeholder="Password" type="password">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Login</button>
+                    </form>
                 </div>
-                <button class="btn btn-primary" type="submit">Log In</button>
-            </form>
-
-        </td>
+                
+            </div>
+          
         <td></td>
     </table>
 
