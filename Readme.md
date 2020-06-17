@@ -78,6 +78,23 @@ The following tables are present in the Database.
 >
 >This feature can be included in later improvements.
 
+## Implementation:
+
+The web-app has been implemented using [app.py](app.py), Jinja templates and an SQLite DB.
+
+### [app.py](app.py)
+
+This file implements the Flask server which handles the back-end tasks such as interfacing with the DB to insert/delete/add data. It also handles rendering the Jinja template files and serving them to the user as needed. The [app.py](app.py) file also makes use of some supplementary code that is available in [helpers.py](helpers.py) such as for accessing DB and executing queries.
+
+### Jinja templates
+
+The html files have been made using Jinja templates for easier implementation.
+
+### SQLite DB
+
+The SQLite DB holds the records for the Users registered with the application as well as all the data of the items that they have entered.
+
+
 ## Layout:
 
 The web-app, after logging in, provides the user with two sections wherein the various lists are maintained: the Study section, where reading and tasks are maintained; and the Leisure section, where games and movies are maintained. There is also the main home page called 'Fireplace' which is shown after logging in.
