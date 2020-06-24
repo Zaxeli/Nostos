@@ -10,6 +10,12 @@ The idea to have a web-app for this purpose originated from a problem I myself f
 
 The web-app can be easily run by simply executing the run.sh file to run the Flask server. 
 
+Go into the directory containing the repository and run:
+    ./run.sh
+If some error shows up, try changing permission for it to execute:
+    chmod +x ./run.sh
+    ./run.sh
+
 ## Design:
 
 The web-app is designed using a Database, a Flask server (back-end) and a front-end.
